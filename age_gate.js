@@ -4,6 +4,9 @@ $( document ).ready(function() {
     //Create headline with minimum age
     $( "h3" ).html(`You must be at least ${MINAGE} to access this site`);
 
+    //Create button text with minimum age
+    $( "#underage-button" ).html(`I'm not ${MINAGE}`);
+
     //Add months to month selector
     $( "#month-select" ).append(MONTHS.map(month => {
         return `<option value=${month}>${month}</option>`
