@@ -11,9 +11,6 @@ $( document ).ready(function() {
     $( "#month-select" ).append(MONTHS.map(month => {
         return `<option value=${month}>${month}</option>`
     }));
-
-    //Add years to year selector
-    // $( "year-select" ).append()
     
     //Calculate age as an integer from date of birth
     function calculateAge(dob) {
