@@ -13,22 +13,49 @@ $( document ).ready(function() {
 
     //Add event listeners
     $( "#verify-button" ).click(verifyAge);
-    $( "#cookie-check" ).click(cookieCheck);
+    // $( "#cookie-check" ).click(cookieCheck);
+
+    //Check for cookies
+    const cookieCheck = checkForCookie();
+    debugger
+    if (cookieCheck) {
+        $( "#month-select" ).val(cookieCheck["month"]);
+        $( "#year-select" ).val(cookieCheck["year"]);
+        $( "#cookie-check" ).prop("checked", true);
+    };
 
     //Cookie functions
-        //Set cookie value
-        function setCookie(value) {
+        //Check for cookie
+        function checkForCookie() {
+            //Break cookie string down into array of key-value pairs
             debugger
-            document.cookie = `rememberme=${value}; path=/`;
+            const cookieArray = document.cookie.split("; ");
+            let cookieObj = {};
+            cookieArray.forEach(ele => {
+                //Add each key value pair to cookieObj
+                const splitEle = ele.split("=");
+                cookieObj[splitEle[0]] = splitEle[1];
+            });
+            //If rememberme set, return selected dates, else return false
+            return cookieObj["rememberme"] ? 
+                {month: cookieObj["month"], year: cookieObj["year"]} : 
+                false;
+        }
+    
+        //Set cookie values
+        function setCookie(remember, month, year) {
+            document.cookie = `rememberme=${remember}; path=/`;
+            document.cookie = `month=${month}; path=/`;
+            document.cookie = `year=${year}; path=/`;
         }
 
         //Handle remember me checkbox
-        function cookieCheck() {
+        function rememberCheck() {
             if ($( "#cookie-check" ).is(":checked")) { 
-                setCookie("true");
+                setCookie("true", $( "#month-select" ).val(), $( "#year-select" ).val());
                 console.log(document.cookie);
             } else {
-                setCookie("");
+                setCookie("", "", "");
                 console.log(document.cookie);
             }
         }
@@ -44,6 +71,7 @@ $( document ).ready(function() {
             } else {
                 console.log("GTFO");
             }
+            rememberCheck();
         }
 
         //Calculate age as an integer from date of birth
