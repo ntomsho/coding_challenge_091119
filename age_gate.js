@@ -6,20 +6,29 @@ $( document ).ready(function() {
     //Create button text with minimum age
     $( "#underage-button" ).html(`I'm not ${MINAGE}`);
 
-    //Add months to month selector
+    //Build options in month and day selectors
     $( "#month-select" ).append(MONTHS.map(month => {
         return `<option value=${month}>${month}</option>`
     }));
+
+    $( "#day-select" ).append( createDays() );
+    function createDays() {
+        let days = [];
+        for (let i = 1; i < 32; i++) {
+            days.push(`<option value=${i}>${i}</option>`);
+        }
+        return days;
+    }
 
     //Add event listeners
     $( "#verify-button" ).click(verifyAge);
     // $( "#cookie-check" ).click(cookieCheck);
 
-    //Check for cookies
+    //Check for cookie, if present, set all values to cookie values
     const cookieCheck = checkForCookie();
-    debugger
     if (cookieCheck) {
         $( "#month-select" ).val(cookieCheck["month"]);
+        $( "#day-select" ).val(cookieCheck["day"]);
         $( "#year-select" ).val(cookieCheck["year"]);
         $( "#cookie-check" ).prop("checked", true);
     };
@@ -28,7 +37,6 @@ $( document ).ready(function() {
         //Check for cookie
         function checkForCookie() {
             //Break cookie string down into array of key-value pairs
-            debugger
             const cookieArray = document.cookie.split("; ");
             let cookieObj = {};
             cookieArray.forEach(ele => {
@@ -38,25 +46,24 @@ $( document ).ready(function() {
             });
             //If rememberme set, return selected dates, else return false
             return cookieObj["rememberme"] ? 
-                {month: cookieObj["month"], year: cookieObj["year"]} : 
+                {month: cookieObj["month"], day: cookieObj["day"], year: cookieObj["year"]} : 
                 false;
         }
     
         //Set cookie values
-        function setCookie(remember, month, year) {
+        function setCookie(remember, month, day, year) {
             document.cookie = `rememberme=${remember}; path=/`;
             document.cookie = `month=${month}; path=/`;
+            document.cookie = `day=${day}; path=/`;
             document.cookie = `year=${year}; path=/`;
         }
 
         //Handle remember me checkbox
         function rememberCheck() {
             if ($( "#cookie-check" ).is(":checked")) { 
-                setCookie("true", $( "#month-select" ).val(), $( "#year-select" ).val());
-                console.log(document.cookie);
+                setCookie("true", $( "#month-select" ).val(), $( "#day-select").val(), $( "#year-select" ).val());
             } else {
                 setCookie("", "", "");
-                console.log(document.cookie);
             }
         }
     
@@ -64,7 +71,7 @@ $( document ).ready(function() {
         //Begin age verification logic
         function verifyAge() {
             //** */TBD day selector
-            let dob = $("#month-select").val() + " 1, " + $("#year-select").val();
+            let dob = $("#month-select").val() + " " + $("#day-select").val() + ", " + $("#year-select").val();
             //** */Need error handling here for incomplete entry
             if (calculateAge(dob) >= MINAGE) {
                 console.log("Welcome");
