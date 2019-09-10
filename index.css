@@ -1,0 +1,33 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* background-color: #C62D29; */
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+}
+
+.main-background {
+    height: 100%;
+    width: 100%;
+    background-image: url("https://secure.i.telegraph.co.uk/multimedia/archive/02932/c_2932863b.jpg");
+    background-size: cover;
+    filter: blur(2px);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba(198, 45, 41, 0.8);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3%;
+    color: white;
+}

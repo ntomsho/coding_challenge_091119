@@ -70,15 +70,14 @@ $( document ).ready(function() {
     //Age verification functions
         //Begin age verification logic
         function verifyAge() {
-            //** */TBD day selector
             let dob = $("#month-select").val() + " " + $("#day-select").val() + ", " + $("#year-select").val();
             //** */Need error handling here for incomplete entry
             if (calculateAge(dob) >= MINAGE) {
                 console.log("Welcome");
+                rememberCheck();
             } else {
                 console.log("GTFO");
             }
-            rememberCheck();
         }
 
         //Calculate age as an integer from date of birth

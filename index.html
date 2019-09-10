@@ -5,29 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    
+    <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-    
-    <h3></h3>
+    <div class="main-background"></div>
+    <div class="content">
+        <!-- <img src="https://seeklogo.com/images/D/Duff_Beer-logo-A7BA6E5125-seeklogo.com.png"> -->
+        
+        <h3></h3>
 
-    <div>Please Enter Date of Birth</div>
+        <div>Month</div>
+        <select id="month-select"></select>
 
-    <div>Month</div>
-    <select id="month-select"></select>
+        <div>Day</div>
+        <select id="day-select"></select>
 
-    <div>Day</div>
-    <select id="day-select"></select>
+        <div>Year</div>
+        <input type="text" id="year-select" placeholder="YYYY"></input>
 
-    <div>Year</div>
-    <input type="text" id="year-select" placeholder="YYYY"></input>
+        <input type="checkbox" id="cookie-check">Remember Me</input>
 
-    <input type="checkbox" id="cookie-check">Remember Me</input>
+        <button id="verify-button">Verify Age</button>
 
-    <button id="verify-button">Verify Age</button>
-
-    <button id="underage-button"></button>
-
+        <button id="underage-button"></button>
+    </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./age_gate.js"></script>
 </body>
