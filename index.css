@@ -4,7 +4,7 @@ html, body {
 }
 
 body {
-    /* background-color: #C62D29; */
+    position: fixed;
     background-size: cover;
     height: 100vh;
     width: 100vw;
@@ -25,7 +25,7 @@ body {
     align-items: center;
     position: absolute;
     background-color: rgba(198, 45, 41, 0.8);
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 3%;
@@ -101,4 +101,60 @@ input:focus {
     left: 50%;
     transform: translate(-50%);
     height: 40%;
+}
+
+/* Formatting for mobile */
+
+@media only screen and (max-device-width: 520px) {
+    
+    .content {
+        border-radius: 0;
+        width: 100%;
+    }
+    
+    h3 {
+        padding: 3% 0 4% 0;
+    }
+    
+    .input-fields {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        min-height: 25vh;
+    }
+    
+    input {
+        width: 50%;
+    }
+    
+    #duff-logo {
+        height: 25%;
+        top: -21%;
+    }
+}
+
+/* Positioning of can logo */
+
+@media screen and (max-device-height: 590px) and (min-device-width:521px) {
+    #duff-logo {
+        height: 25%;
+        top: -21%;
+    }
+}
+
+@media screen and (max-device-height: 495px) and (min-device-width:521px) {
+    .content {
+        top: 50%;
+    }
+    
+    #duff-logo {
+        display: none;
+    }
+}
+
+@media screen and (max-device-height: 630px) and (max-device-width:520px) {
+    #duff-logo {
+        display: none;
+    }
 }

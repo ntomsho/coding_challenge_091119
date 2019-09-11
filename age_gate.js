@@ -95,7 +95,7 @@ $( document ).ready(function() {
                 rememberCheck();
                 const content = $( ".content" );
                 content.fadeOut(500, function() {
-                    content.html(`Duff Man says "Welcome"!`);
+                    content.html(`<h1 id="welcome-message">Duff Man says "Welcome! Oh yeah!"</h1>`);
                     content.fadeIn(500, function() {
                         window.location.replace(HOMEPAGE);
                     });
