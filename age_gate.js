@@ -1,5 +1,12 @@
 $( document ).ready(function() {
 
+    //If cookie already set, bypass agegate entirely
+    const cookieCheck = checkForCookie();
+    if (cookieCheck) {
+        window.location.replace(HOMEPAGE);
+        return;
+    };
+
     //Create headline with minimum age
     $( "h3" ).html(`You must be at least <br/><strong>${MINAGE}</strong><br/> to access this site`);
 
@@ -44,15 +51,6 @@ $( document ).ready(function() {
     }
     
     //Cookie functions
-        //Check for cookie, if present, set all values to cookie values
-        const cookieCheck = checkForCookie();
-        if (cookieCheck) {
-            $("#month-select").val(cookieCheck["month"]);
-            $("#day-select").val(cookieCheck["day"]);
-            $("#year-select").val(cookieCheck["year"]);
-            $("#cookie-check").prop("checked", true);
-        };
-
         //Check for cookie
         function checkForCookie() {
             //Break cookie string down into array of key-value pairs
@@ -65,7 +63,7 @@ $( document ).ready(function() {
             });
             //If rememberme set, return selected dates, else return false
             return cookieObj["rememberme"] ? 
-                {month: cookieObj["month"], day: cookieObj["day"], year: cookieObj["year"]} : 
+                true : 
                 false;
         }
     
