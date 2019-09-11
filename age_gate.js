@@ -95,12 +95,17 @@ $( document ).ready(function() {
                 console.log("Welcome");
                 rememberCheck();
             } else {
-                console.log("GTFO");
+                const headline = $( "h3" );
+                headline.fadeOut(500, function() {
+                    headline.html(`Sorry, you have to be <br/><strong>${MINAGE}</strong></br> to enter`);
+                    headline.fadeIn(500);
+                })
             }
         }
 
         //Calculate age as an integer from date of birth
         function calculateAge(dob) {
+            debugger
             const age = new Date(Date.now() - new Date(dob))
             return Math.abs(age.getUTCFullYear() - 1970);
         }

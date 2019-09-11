@@ -31,24 +31,29 @@ body {
     padding: 3%;
     color: white;
     font-family: 'Oswald', sans-serif;
+    border-radius: 50%;
+    border: 2px solid white;
 }
 
 .input-fields {
     display: flex;
     justify-content: space-around;
+    padding: 0 0 4% 0;
 }
 
 h3 {
     font-size: 36px;
     text-align: center;
     line-height: 1;
+    margin: 0;
+    padding: 0 0 4% 0;
 }
 
 strong {
     font-size: 48px;
 }
 
-input {
+input, button {
     text-align: center;
     background-color: rgba(255,255,255,0.25);
     color: white;
@@ -66,6 +71,23 @@ input {
 input:focus {
     border: 2px solid white;
     outline: 0;
+}
+
+#verify-button {
+    width: 30%;
+    cursor: pointer;
+    color: black;
+    background-color: rgba(255, 255, 255, 1);
+    transition: background-color 0.15s ease-in-out;
+}
+
+#verify-button:hover {
+    background-color: rgba(200, 200, 200, 1);
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
 }
 
 #underage-link {
