@@ -38,7 +38,7 @@ $( document ).ready(function() {
                 len = 4;
         }
         //If entered value is sufficient length, check if it is within the correct range
-        if (value.toString().length >= len && (value < range[0] || value > range[1])) {
+        if (value.toString().length >= len && !(value >= range[0] && value <= range[1])) {
             $(event.currentTarget).val("");
         }
     }
