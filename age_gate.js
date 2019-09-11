@@ -69,20 +69,15 @@ $( document ).ready(function() {
                 false;
         }
     
-        //Set cookie values
-        function setCookie(remember, month, day, year) {
-            document.cookie = `rememberme=${remember}; path=/`;
-            document.cookie = `month=${month}; path=/`;
-            document.cookie = `day=${day}; path=/`;
-            document.cookie = `year=${year}; path=/`;
+        //Set cookie value to remember user
+        function setCookie() {
+            document.cookie = `rememberme=true; path=/`;
         }
 
-        //Handle remember me checkbox
+        //If remember me is checked, set cookie to bypass agegate
         function rememberCheck() {
             if ($( "#cookie-check" ).is(":checked")) { 
-                setCookie("true", $( "#month-select" ).val(), $( "#day-select").val(), $( "#year-select" ).val());
-            } else {
-                setCookie("", "", "");
+                setCookie();
             }
         }
     
@@ -92,8 +87,8 @@ $( document ).ready(function() {
             const month = $("#month-select").val();
             const day = $("#day-select").val();
             const year = $("#year-select").val();
-            //Break out of function if any inputs return falsy
-            if (!month || !day || !year ) {
+            //Break out of function if any inputs return falsy or year is ridiculous
+            if (!month || !day || !year || year < 1900 ) {
                 return;
             }
             let dob = month + " " + day + ", " + year;
@@ -118,7 +113,6 @@ $( document ).ready(function() {
 
         //Calculate age as an integer from date of birth
         function calculateAge(dob) {
-            debugger
             const age = new Date(Date.now() - new Date(dob))
             return Math.abs(age.getUTCFullYear() - 1970);
         }
@@ -127,7 +121,9 @@ $( document ).ready(function() {
 
 
 // Constants
+    //Adjust to get correct homepage after passing age gate
 var HOMEPAGE = "https://giphy.com/gifs/season-9-the-simpsons-9x1-3orif1ocafXfffpUzu/fullscreen"
+    //Adjust to get correct legal drinking age, could incorporate geolocation data
 var MINAGE = 21;
 var MONTHDAYS = {"1":31, "2":29, "3":31, "4":30, "5":31, "6":30, "7":31, "8":31, "9":30, "10":31, "11":30, "12":31,
 "01":31, "02":29, "03":31, "04":30, "05":31, "06":30, "07":31, "08":31, "09":30}
