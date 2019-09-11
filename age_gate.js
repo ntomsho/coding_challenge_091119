@@ -87,19 +87,26 @@ $( document ).ready(function() {
         }
     
     //Age verification functions
-        //Begin age verification logic
         function verifyAge() {
+            //Get values from inputs
             const month = $("#month-select").val();
             const day = $("#day-select").val();
             const year = $("#year-select").val();
+            //Break out of function if any inputs return falsy
             if (!month || !day || !year ) {
                 return;
             }
             let dob = month + " " + day + ", " + year;
-            //** */Need error handling here for incomplete entry
             if (calculateAge(dob) >= MINAGE) {
                 console.log("Welcome");
                 rememberCheck();
+                const content = $( ".content" );
+                content.fadeOut(500, function() {
+                    content.html(`Duff Man says "Welcome"!`);
+                    content.fadeIn(500, function() {
+                        window.location.replace(HOMEPAGE);
+                    });
+                })
             } else {
                 const headline = $( "h3" );
                 headline.fadeOut(500, function() {
@@ -120,6 +127,7 @@ $( document ).ready(function() {
 
 
 // Constants
+var HOMEPAGE = "https://giphy.com/gifs/season-9-the-simpsons-9x1-3orif1ocafXfffpUzu/fullscreen"
 var MINAGE = 21;
 var MONTHDAYS = {"1":31, "2":29, "3":31, "4":30, "5":31, "6":30, "7":31, "8":31, "9":30, "10":31, "11":30, "12":31,
 "01":31, "02":29, "03":31, "04":30, "05":31, "06":30, "07":31, "08":31, "09":30}
