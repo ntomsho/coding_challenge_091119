@@ -91,6 +91,7 @@ $( document ).ready(function() {
             }
             let dob = month + " " + day + ", " + year;
             if (calculateAge(dob) >= MINAGE) {
+                //If user is correct age, check for remember me, fade in to welcome message, and redirect to homepage
                 console.log("Welcome");
                 rememberCheck();
                 const content = $( ".content" );
@@ -101,6 +102,7 @@ $( document ).ready(function() {
                     });
                 })
             } else {
+                //If user is underage, fade in underage message
                 const headline = $( "h3" );
                 headline.fadeOut(500, function() {
                     headline.html(`Sorry, you have to be <br/><strong>${MINAGE}</strong></br> to enter`);
@@ -123,5 +125,6 @@ $( document ).ready(function() {
 var HOMEPAGE = "https://giphy.com/gifs/season-9-the-simpsons-9x1-3orif1ocafXfffpUzu/fullscreen"
     //Adjust to get correct legal drinking age, could incorporate geolocation data
 var MINAGE = 21;
+    //Object for assigning correct number of days to months for input filter
 var MONTHDAYS = {"1":31, "2":29, "3":31, "4":30, "5":31, "6":30, "7":31, "8":31, "9":30, "10":31, "11":30, "12":31,
 "01":31, "02":29, "03":31, "04":30, "05":31, "06":30, "07":31, "08":31, "09":30}
