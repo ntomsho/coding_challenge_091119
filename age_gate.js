@@ -4,7 +4,7 @@ $( document ).ready(function() {
     $( "h3" ).html(`You must be at least <br/><strong>${MINAGE}</strong><br/> to access this site`);
 
     //Create button text with minimum age
-    $( "#underage-button" ).html(`I'm not ${MINAGE}`);
+    $( "#underage-link" ).html(`I'm not ${MINAGE}`);
 
     //Add event listeners
     $( "#verify-button" ).click(verifyAge);
