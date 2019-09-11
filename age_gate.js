@@ -89,7 +89,13 @@ $( document ).ready(function() {
     //Age verification functions
         //Begin age verification logic
         function verifyAge() {
-            let dob = $("#month-select").val() + " " + $("#day-select").val() + ", " + $("#year-select").val();
+            const month = $("#month-select").val();
+            const day = $("#day-select").val();
+            const year = $("#year-select").val();
+            if (!month || !day || !year ) {
+                return;
+            }
+            let dob = month + " " + day + ", " + year;
             //** */Need error handling here for incomplete entry
             if (calculateAge(dob) >= MINAGE) {
                 console.log("Welcome");
@@ -99,7 +105,7 @@ $( document ).ready(function() {
                 headline.fadeOut(500, function() {
                     headline.html(`Sorry, you have to be <br/><strong>${MINAGE}</strong></br> to enter`);
                     headline.fadeIn(500);
-                })
+                });
             }
         }
 
