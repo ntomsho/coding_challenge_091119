@@ -1,24 +1,10 @@
 $( document ).ready(function() {
 
     //Create headline with minimum age
-    $( "h3" ).html(`You must be at least ${MINAGE} to access this site`);
+    $( "h3" ).html(`You must be at least <strong>${MINAGE}</strong> to access this site`);
 
     //Create button text with minimum age
     $( "#underage-button" ).html(`I'm not ${MINAGE}`);
-
-    //Build options in month and day selectors
-    $( "#month-select" ).append(MONTHS.map(month => {
-        return `<option value=${month}>${month}</option>`
-    }));
-
-    $( "#day-select" ).append( createDays() );
-    function createDays() {
-        let days = [];
-        for (let i = 1; i < 32; i++) {
-            days.push(`<option value=${i}>${i}</option>`);
-        }
-        return days;
-    }
 
     //Add event listeners
     $( "#verify-button" ).click(verifyAge);
