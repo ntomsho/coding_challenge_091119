@@ -59,6 +59,10 @@ input {
     border-radius: 10px;
 }
 
+::placeholder {
+    color: white;
+}
+
 input:focus {
     border: 2px solid white;
     outline: 0;
